@@ -50,9 +50,6 @@ export default function DriverDashboardPage() {
         accept,
       });
 
-      if (accept) {
-        alert("Ride accepted!");
-      }
 
       fetchCurrentAndPendingRides();
     } catch (err) {
@@ -71,7 +68,6 @@ export default function DriverDashboardPage() {
       });
 
       if (newStatus === "Completed") {
-        alert("Ride marked as completed!");
         setCurrentRide(null);
       }
 

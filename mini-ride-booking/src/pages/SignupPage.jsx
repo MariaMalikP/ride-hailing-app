@@ -31,7 +31,6 @@ export default function SignupPage() {
     try {
       setLoading(true);
       await axios.post("/signup", { name, email, password, role });
-      alert("Account created! Please log in.");
       navigate("/login");
     } catch (error) {
       console.error(error.response?.data || error.message);
