@@ -40,7 +40,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col md:justify-center md:items-center">
       {/* Mobile Header */}
-      <div className="bg-[#E2825B] px-6 pt-40 pb-10 md:hidden">
+      <div className="bg-[#1DBF73] px-6 pt-40 pb-10 md:hidden">
         <h1 className="text-white text-3xl font-bold mb-1">Login</h1>
         <p className="text-white text-sm">Log in to continue</p>
       </div>
@@ -69,7 +69,7 @@ export default function LoginPage() {
       <div className="hidden md:flex w-full max-w-md border rounded-3xl shadow-lg overflow-hidden">
         <div className="w-full bg-white px-10 py-12 space-y-6">
           <div>
-            <h1 className="text-4xl font-bold text-[#E2825B] mb-1">Login</h1>
+            <h1 className="text-4xl font-bold text-[#1DBF73] mb-1">Login</h1>
             <p className="text-sm text-gray-600">Log in to continue</p>
           </div>
 
@@ -104,7 +104,7 @@ function InputField({ label, type, value, setValue }) {
         value={value}
         onChange={e => setValue(e.target.value)}
         placeholder={`Enter your ${label.toLowerCase()}`}
-        className="bg-gray-100 px-4 py-3 rounded-xl outline-none focus:ring-2 ring-[#E2825B] text-sm"
+        className="bg-gray-100 px-4 py-3 rounded-xl outline-none focus:ring-2 ring-[#1DBF73] text-sm"
       />
     </div>
   );
@@ -120,14 +120,14 @@ function PasswordField({ label, value, setValue, show, toggleShow }) {
           value={value}
           onChange={e => setValue(e.target.value)}
           placeholder={`Enter your ${label.toLowerCase()}`}
-          className="bg-gray-100 px-4 py-3 rounded-xl w-full pr-10 outline-none focus:ring-2 ring-[#E2825B] text-sm"
+          className="bg-gray-100 px-4 py-3 rounded-xl w-full pr-10 outline-none focus:ring-2 ring-[#1DBF73] text-sm"
         />
         <button
           type="button"
           onClick={toggleShow}
           className="absolute inset-y-0 right-3 flex items-center text-gray-500"
         >
-          {/* {show ? <HiEyeOff size={20} /> : <HiEye size={20} />} */}
+          {show ? <HiEyeOff size={20} /> : <HiEye size={20} />}
         </button>
       </div>
     </div>

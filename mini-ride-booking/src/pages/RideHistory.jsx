@@ -42,13 +42,13 @@ export default function RideHistoryPage() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <FaCarSide className="text-[#E2825B]" />
-                    <p className="font-semibold text-sm text-[#131842]">{ride.rideType}</p>
+                    <FaCarSide className="text-[#1DBF73]" />
+                    <p className="font-semibold text-sm text-[#131842] capitalize">{ride.rideType}</p>
                   </div>
                   <span
                     className={`text-xs font-medium ${
                       ride.status === "Completed"
-                        ? "text-green-600"
+                        ? "text-[#1DBF73]"
                         : "text-red-500"
                     }`}
                   >
@@ -58,16 +58,16 @@ export default function RideHistoryPage() {
 
                 <div className="text-sm text-gray-700 space-y-1">
                   <div className="flex items-center gap-2">
-                    <FaMapMarkerAlt className="text-[#E2825B]" />
+                    <FaMapMarkerAlt className="text-[#1DBF73]" />
                     <span>{ride.pickup}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <FaLocationArrow className="text-[#E2825B]" />
+                    <FaLocationArrow className="text-[#1DBF73]" />
                     <span>{ride.dropoff}</span>
                   </div>
                 </div>
 
-                {/* Optional date display if you store it */}
+                {/* Optional date display */}
                 {/* <p className="text-xs text-gray-500">{ride.date} • {ride.time}</p> */}
               </div>
             ))

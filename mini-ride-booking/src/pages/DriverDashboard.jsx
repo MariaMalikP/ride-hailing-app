@@ -25,18 +25,17 @@ export default function DriverDashboardPage() {
       const res = await axios.get("/pending-rides");
       const allRides = res.data.all || [];
       const pending = res.data.pending || [];
-      console.log("All rides:", allRides);
-    
+
       const activeRide = allRides.find(
         (r) => r.driverId === driver.id && r.status !== "Completed"
       );
 
       if (activeRide) {
         setCurrentRide(activeRide);
-        setRides([]); // don't show pending if current active exists
+        setRides([]);
       } else {
         setCurrentRide(null);
-        setRides(pending); // show only pending unaccepted rides
+        setRides(pending);
       }
     } catch (err) {
       console.error("Failed to fetch rides", err);
@@ -83,29 +82,36 @@ export default function DriverDashboardPage() {
   };
 
   const RideIcon = (type) => {
+    const iconClass = "text-[#1DBF73]";
     switch (type?.toLowerCase()) {
       case "bike":
-        return <FaMotorcycle className="text-[#E2825B]" />;
+        return <FaMotorcycle className={iconClass} />;
       case "car":
-        return <FaCar className="text-[#E2825B]" />;
+        return <FaCar className={iconClass} />;
       case "rickshaw":
-        return <FaTruckPickup className="text-[#E2825B]" />;
+        return <FaTruckPickup className={iconClass} />;
       default:
-        return <FaCar className="text-[#E2825B]" />;
+        return <FaCar className={iconClass} />;
     }
   };
 
   const RideCard = ({ ride, isCurrent = false }) => (
-    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 space-y-3">
+    <div
+      className={`rounded-2xl p-5 space-y-3 ${
+        isCurrent
+          ? "bg-[#E9FBF3] border border-[#1DBF73]"
+          : "bg-gray-50 border border-gray-200"
+      }`}
+    >
       {isCurrent && (
         <h2 className="text-lg font-semibold text-[#131842]">Current Ride</h2>
       )}
       <div className="text-sm text-gray-700 flex items-center gap-2">
-        <FaMapMarkerAlt className="text-[#E2825B]" />
+        <FaMapMarkerAlt className="text-[#1DBF73]" />
         <span>Pickup: {ride.pickup}</span>
       </div>
       <div className="text-sm text-gray-700 flex items-center gap-2">
-        <FaLocationArrow className="text-[#E2825B]" />
+        <FaLocationArrow className="text-[#1DBF73]" />
         <span>Dropoff: {ride.dropoff}</span>
       </div>
       <div className="text-sm text-gray-700 flex items-center gap-2">
@@ -113,7 +119,7 @@ export default function DriverDashboardPage() {
         <span>Type: {ride.rideType}</span>
       </div>
       <div className="text-sm text-gray-700 flex items-center gap-2">
-        <FaClock className="text-[#E2825B]" />
+        <FaClock className="text-[#1DBF73]" />
         <span>Status: {ride.status}</span>
       </div>
 
@@ -121,7 +127,7 @@ export default function DriverDashboardPage() {
       {isCurrent && ride.status === "Accepted" && (
         <button
           onClick={() => handleStatusUpdate("In Progress")}
-          className="w-full bg-blue-600 text-white py-2 rounded-xl text-sm font-semibold hover:bg-blue-700"
+          className="w-full bg-[#1DBF73] text-white py-2 rounded-xl text-sm font-semibold hover:bg-[#18a55f]"
         >
           Start Ride
         </button>
@@ -129,13 +135,13 @@ export default function DriverDashboardPage() {
       {isCurrent && ride.status === "In Progress" && (
         <button
           onClick={() => handleStatusUpdate("Completed")}
-          className="w-full bg-green-600 text-white py-2 rounded-xl text-sm font-semibold hover:bg-green-700"
+          className="w-full bg-[#131842] text-white py-2 rounded-xl text-sm font-semibold hover:bg-[#0f1438]"
         >
           Mark as Completed
         </button>
       )}
       {isCurrent && ride.status === "Completed" && (
-        <div className="flex items-center text-green-700 text-sm mt-2">
+        <div className="flex items-center text-[#1DBF73] text-sm mt-2">
           <FaCheckCircle className="mr-1" />
           Ride completed successfully!
         </div>
@@ -178,7 +184,9 @@ export default function DriverDashboardPage() {
           {currentRide && <RideCard ride={currentRide} isCurrent />}
           {!currentRide && rides.length > 0 && (
             <>
-              <h2 className="text-lg font-medium text-gray-800 mt-2">Pending Rides</h2>
+              <h2 className="text-lg font-medium text-gray-800 mt-2">
+                Pending Rides
+              </h2>
               {rides.map((ride) => (
                 <RideCard key={ride.id} ride={ride} />
               ))}
