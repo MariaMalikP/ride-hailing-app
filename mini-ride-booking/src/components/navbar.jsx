@@ -12,7 +12,7 @@ export default function Navbar() {
 
   const navItems = [
     { label: "Home", icon: <FaHome />, path: "/request-ride" },
-    { label: "Ride Status", icon: <FaStream />, path: "/ride-status" },
+  
     { label: "Rides", icon: <FaHistory />, path: "/history" },
   ];
 
